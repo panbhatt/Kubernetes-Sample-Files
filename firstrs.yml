@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: firstrc
+  labels:
+    appname: votingapp
+
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: apptype
+        operator: In
+        values:
+          - frontend
+          - backend
+  template:
+    metadata:
+      name: firstPod1
+      labels:
+        apptype: frontend
+        swtype: webserver
+        malcode: gsbm
+    spec:
+      containers:
+        - image: coolgourav147/nginx-custom
+          name: firstcontainer
+
