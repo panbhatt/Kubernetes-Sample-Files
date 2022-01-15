@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: firstdeployment
+  labels:
+    appname: votingapp
+
+spec:
+  replicas: 5
+  minReadySeconds: 30
+  strategy:
+    rollingUpdate:
+      maxSurge: 0 
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchExpressions:
+      - key: type
+        operator: In
+        values:
+          - app
+          - backend
+  template:
+    metadata:
+      name: firstPod1
+      labels:
+        type: app
+    spec:
+      containers:
+        - image: coolgourav147/nginx-custom:v2
+          name: firstcontainer
+
