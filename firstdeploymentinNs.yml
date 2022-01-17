@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: firstdeployment
+  namespace: gsbmweb
   labels:
     appname: votingapp
   annotations:
