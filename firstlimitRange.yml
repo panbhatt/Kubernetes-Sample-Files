@@ -1,0 +1,15 @@
+apiVersion: v1
+
+kind: LimitRange
+
+metadata:
+  name: mylimitrange
+  namespace: myns
+
+
+spec:
+  limits:
+    - default:
+        cpu: 200m
+        memory: 500Mi
+      type: Container
