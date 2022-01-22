@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myfirstpod
+  labels:
+    env: Test
+    test: DEV
+    test1: PROD
+
+spec:
+  containers:
+    - name: firstconntainer
+      image: coolgourav147/nginx-custom
+      volumeMounts:
+        - name: testvol
+          mountPath: "/config"
+          readOnly: true
+
+  volumes:
+    - name: testvol
+      configMap:
+        name: mycm
