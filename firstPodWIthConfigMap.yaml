@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myfirstpod
+  labels:
+    env: Test
+    test: DEV
+    test1: PROD
+
+spec:
+  containers:
+    - name: firstconntainer
+      image: coolgourav147/nginx-custom
+      env:
+        - name: JAVA_HOME
+          value: /usr/bin/jdk
+        - name: ENV_VAR_NAME_FROM_CONFIGMAP
+          valueFrom:
+            configMapKeyRef:
+              key: user_name
+              name: mycm  
+
+  
